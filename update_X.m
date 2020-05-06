@@ -20,6 +20,6 @@ normT = norm(T(:));
     end
     Xlast = X;
     X = Msum / N;
-    X(Omega) = T(Omega);
+ 
         t=toc(CC);
 end

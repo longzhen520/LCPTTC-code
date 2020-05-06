@@ -16,8 +16,6 @@ X=reshape(X,m,n);
 beta = opts.beta;
 X(Known)=data;
 [indm,indn,data1]=find(X);
-
-% [indm, indn] = ind2sub([m, n], Known);
 data( data1 == 0 )= eps;
 res = sparse(indm, indn, data1, m, n);
 [indm, indn, data1] = find(res);
@@ -43,7 +41,6 @@ while (i <= r) && (gamma > epsilon )
     % 1. find the top singular pair of the residual and update the gresnorm
     resvec = beta1*(data1 - W);      % compact vector representation of the negative gradient
     sparse_update(res, resvec); % sparse update the res using resvec
-
      [u,v] = get_init2(-res,s1,s2,x3_old);
     x3_old = v;
     % 2. update the weight Theta, the pursuit basis is uv', its weight is s.
@@ -62,9 +59,9 @@ while (i <= r) && (gamma > epsilon )
 end
 % V = diag(Theta)*V;
 X = U*V';
-if opts.no_noise == 1
-    X(Known) = data;
-end
+% if opts.no_noise == 1
+%     X(Known) = data;
+% end
 numiter = i;
  t=toc(BB);
 

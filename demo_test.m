@@ -15,7 +15,7 @@ y=T.*O;
 
 % y1(:,:,:,ObsRatio)=y;
 known=find(y);
-data=y(known);
+data=y(known>1e-3);
 multi1=zeros(Nway);
 multi2=zeros(Nway);
 r = 50;
